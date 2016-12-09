@@ -1,0 +1,9 @@
+.btn-suggestion {
+	width: 100%;
+	text-align: left;
+	overflow: hidden;
+}
+
+.twitter-typeahead {
+	width: 100%;
+}

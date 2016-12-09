@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="ciqual.css" />
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.min.js"></script>
@@ -17,8 +18,63 @@
 	<div class="page-header">
 		<h1>Ciqual</h1>
 	</div>
-	<input class="sfTypeahead" type="text" datasets="ingredientsDataset" ng-model="selectedIngredient" />
-	{{selectedIngredient}}
+	<form no-validate>
+		<table class="table table-condensed">
+		<colgroup>
+			<col width="500" />
+			<col width="100" />
+			<col width="100" />
+			<col width="100" />
+			<col width="100" />
+			<col width="100" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Ingrédient</th>
+				<th>Poids</th>
+				<th>Protéines</th>
+				<th>Glucides</th>
+				<th>Lipides</th>
+				<th>Énergie</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="ingredient in ingredients">
+				<td>
+					<input class="form-control sfTypeahead" type="text" datasets="ingredientsDataset" options="typeaheadOptions" ng-model="ingredient.selected" placeholder="Ingrédient" />
+				</td>
+				<td>
+					<div class="input-group">
+						<input class="form-control" type="text" placeholder="Poids" ng-model="ingredient.poids" />
+						<span class="input-group-addon">g</span>
+					</div>
+				</td>
+				<td>
+					<span ng-show="ingredient.selected.proteines">{{ingredient.selected.proteines * ingredient.poids / 100 | number:2}} g</span>
+				</td>
+				<td>
+					<span ng-show="ingredient.selected.glucides">{{ingredient.selected.glucides * ingredient.poids / 100 | number:2}} g</span>
+				</td>
+				<td>
+					<span ng-show="ingredient.selected.lipides">{{ingredient.selected.lipides * ingredient.poids / 100 | number:2}} g</span>
+				</td>
+				<td>
+					<span ng-show="ingredient.selected.energie">{{ingredient.selected.energie * ingredient.poids / 100 | number:2}} kcal</span>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Total</th>
+				<th>{{total.poids | number:2}} g</th>
+				<th>{{total.proteines | number:2}} g</th>
+				<th>{{total.glucides | number:2}} g</th>
+				<th>{{total.lipides | number:2}} g</th>
+				<th>{{total.energie | number:2}} kcal</th>
+			</tr>
+		</tfoot>
+		</table>
+	</form>
 </div>
 </body>
 </html>

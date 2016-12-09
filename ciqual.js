@@ -36,7 +36,7 @@ app.controller("CiqualController", [ "$scope", "Ingredients", function($scope, I
 		$scope.total = { poids : 0, proteines : 0, glucides : 0, lipides : 0, energie : 0 };
 		ingredients.forEach(function(ingredient) {
 			var nPoids = Number.parseFloat(ingredient.poids);
-			if (!isNaN(nPoids)) {
+			if (ingredient.selected && !isNaN(nPoids)) {
 				$scope.total.poids += nPoids;
 				if (ingredient.selected instanceof Object) {
 					$scope.total.proteines += ingredient.selected.proteines * nPoids / 100;

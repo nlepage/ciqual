@@ -6,6 +6,8 @@ app.factory("Ingredients", [ "$resource" , function($resource) {
 
 app.controller("CiqualController", [ "$scope", "Ingredients", function($scope, Ingredients) {
 	$scope.ingredients = [];
+	$scope.poidsPortion = 100;
+	$scope.nombrePortions = 4;
 	
 	var defaultIngredient = { selected : null, poids : 100 };
 	
@@ -57,4 +59,18 @@ app.controller("CiqualController", [ "$scope", "Ingredients", function($scope, I
 			}
 		});
 	}, true);
+	
+	$scope.pourPortionPoids = function(valeur) {
+		if (($scope.total.poids === 0) || ($scope.poidsPortion === undefined) || ($scope.poidsPortion === null)) {
+			return 0;
+		}
+		return $scope.poidsPortion * valeur / $scope.total.poids;
+	};
+	
+	$scope.pourNombrePortions = function(valeur) {
+		if (($scope.nombrePortions === undefined) || ($scope.nombrePortions === null)) {
+			return 0;
+		}
+		return valeur / $scope.nombrePortions;
+	}
 } ])

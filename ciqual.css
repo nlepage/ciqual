@@ -8,6 +8,6 @@
 	width: 100%;
 }
 
-.table tbody tr td {
+.table tbody tr td, .table tfoot tr th {
 	vertical-align: middle;
 }

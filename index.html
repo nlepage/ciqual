@@ -38,11 +38,11 @@
 			<tr>
 				<th>Ingrédient</th>
 				<th>Poids</th>
-				<th>Protéines</th>
-				<th>Glucides</th>
-				<th>Lipides</th>
-				<th>Énergie</th>
-				<th>
+				<th class="text-center">Protéines</th>
+				<th class="text-center">Glucides</th>
+				<th class="text-center">Lipides</th>
+				<th class="text-center">Énergie</th>
+				<th class="text-center">
 					<button type="button" class="btn btn-success" aria-label="Ajouter" title="Ajouter" ng-click="ajouterIngredient($index)">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					</button>
@@ -56,23 +56,23 @@
 				</td>
 				<td>
 					<div class="input-group">
-						<input class="form-control" type="number" placeholder="Poids" ng-model="ingredient.poids" />
+						<input class="form-control" type="number" min="0" step="10" placeholder="Poids" ng-model="ingredient.poids" />
 						<span class="input-group-addon">g</span>
 					</div>
 				</td>
-				<td>
+				<td class="text-center">
 					<span ng-show="ingredient.selected.proteines">{{ingredient.selected.proteines * ingredient.poids / 100 | number:2}} g</span>
 				</td>
-				<td>
+				<td class="text-center">
 					<span ng-show="ingredient.selected.glucides">{{ingredient.selected.glucides * ingredient.poids / 100 | number:2}} g</span>
 				</td>
-				<td>
+				<td class="text-center">
 					<span ng-show="ingredient.selected.lipides">{{ingredient.selected.lipides * ingredient.poids / 100 | number:2}} g</span>
 				</td>
-				<td>
+				<td class="text-center">
 					<span ng-show="ingredient.selected.energie">{{ingredient.selected.energie * ingredient.poids / 100 | number:2}} kcal</span>
 				</td>
-				<td>
+				<td class="text-center">
 					<button type="button" class="btn btn-danger" aria-label="Supprimer" title="Supprimer" ng-click="supprimerIngredient($index)">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
@@ -81,17 +81,38 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th>Total</th>
+				<th class="text-right">Total</th>
 				<th>{{total.poids | number:2}} g</th>
-				<th>{{total.proteines | number:2}} g</th>
-				<th>{{total.glucides | number:2}} g</th>
-				<th>{{total.lipides | number:2}} g</th>
-				<th>{{total.energie | number:2}} kcal</th>
+				<th class="text-center">{{total.proteines | number:2}} g</th>
+				<th class="text-center">{{total.glucides | number:2}} g</th>
+				<th class="text-center">{{total.lipides | number:2}} g</th>
+				<th class="text-center">{{total.energie | number:2}} kcal</th>
+				<th></th>
+			</tr>
+			<tr>
+				<th class="text-right">Pour une portion de</th>
 				<th>
-					<button type="button" class="btn btn-success" aria-label="Ajouter" title="Ajouter" ng-click="ajouterIngredient($index)">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</button>
+					<div class="input-group">
+						<input class="form-control" type="number" min="0" step="10" placeholder="Poids" ng-model="poidsPortion" />
+						<span class="input-group-addon">g</span>
+					</div>
 				</th>
+				<th class="text-center">{{pourPortionPoids(total.proteines) | number:2}} g</th>
+				<th class="text-center">{{pourPortionPoids(total.glucides) | number:2}} g</th>
+				<th class="text-center">{{pourPortionPoids(total.lipides) | number:2}} g</th>
+				<th class="text-center">{{pourPortionPoids(total.energie) | number:2}} kcal</th>
+				<th></th>
+			</tr>
+			<tr>
+				<th class="text-right form-inline">
+					Pour <input class="form-control text-center" type="number" min="1" style="width: 5em" placeholder="n" ng-model="nombrePortions" /> portions de
+				</th>
+				<th>{{pourNombrePortions(total.poids) | number:2}} g</th>
+				<th class="text-center">{{pourNombrePortions(total.proteines) | number:2}} g</th>
+				<th class="text-center">{{pourNombrePortions(total.glucides) | number:2}} g</th>
+				<th class="text-center">{{pourNombrePortions(total.lipides) | number:2}} g</th>
+				<th class="text-center">{{pourNombrePortions(total.energie) | number:2}} kcal</th>
+				<th></th>
 			</tr>
 		</tfoot>
 		</table>

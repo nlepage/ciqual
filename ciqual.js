@@ -47,7 +47,7 @@ app.controller("CiqualController", [ "$scope", "Ingredients", function($scope, I
 	$scope.$watch("ingredients", function(ingredients) {
 		$scope.total = { poids : 0, proteines : 0, glucides : 0, lipides : 0, energie : 0 };
 		ingredients.forEach(function(ingredient) {
-			var nPoids = Number.parseFloat(ingredient.poids);
+			var nPoids = parseFloat(ingredient.poids);
 			if (ingredient.selected && !isNaN(nPoids)) {
 				$scope.total.poids += nPoids;
 				if (ingredient.selected instanceof Object) {

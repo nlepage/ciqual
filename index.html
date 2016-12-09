@@ -1,8 +1,48 @@
-<html>
+<html ng-app="ciqual">
 <head>
-<title>ciqual</title>
+<title>Ciqual</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
 </head>
 <body>
-<h1>ciqual</h1>
+<div class="container-fluid" ng-controller="CiqualController">
+	<div class="page-header">
+		<h1>Ciqual</h1>
+	</div>
+	<form novalidate>
+		<div class="form-group">
+			<label for="ingredient">Ingrédient</label>
+			<input type="ingredient" class="form-control" id="ingredient" placeholder="Ingrédient" ng-model="ingredientQuery" />
+		</div>
+	</form>
+	<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th>Ingrédient</th>
+			<th>Catégorie</th>
+			<th>Protéines</th>
+			<th>Glucides</th>
+			<th>Lipides</th>
+			<th>Énergie</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="ingredient in ingredients | filter:ingredientQuery">
+			<td>{{ingredient.libelle}}</td>
+			<td>{{ingredient.categorie}}</td>
+			<td>{{ingredient.proteines}}</td>
+			<td>{{ingredient.glucides}}</td>
+			<td>{{ingredient.lipides}}</td>
+			<td>{{ingredient.energie}}</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="ciqual.js"></script>
 </body>
 </html>

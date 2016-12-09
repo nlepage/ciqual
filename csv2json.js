@@ -9,8 +9,7 @@ var discardedColumns = [ "ORIGGPCD", "10110 Sodium (mg/100g)", "10120 Magnésium 
 var firstLine = true;
 
 request({
-	url : "https://pro.anses.fr/tableciqual/Documents/CIQUAL2013-Donneescsv.csv",
-	proxy : "http://proxyaws.pole-emploi.intra:8080"
+	url : "https://pro.anses.fr/tableciqual/Documents/CIQUAL2013-Donneescsv.csv"
 })
 .pipe(csv.parse({
 	delimiter : ";",

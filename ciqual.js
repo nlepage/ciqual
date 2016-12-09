@@ -5,11 +5,21 @@ app.factory("Ingredients", [ "$resource" , function($resource) {
 } ]);
 
 app.controller("CiqualController", [ "$scope", "Ingredients", function($scope, Ingredients) {
-	var defaultIngredient = { selected : null, poids : 100 };
 	$scope.ingredients = [];
-	for (var i = 0; i < 3; i++) {
+	
+	var defaultIngredient = { selected : null, poids : 100 };
+	
+	$scope.ajouterIngredient = function() {
 		$scope.ingredients.push(angular.copy(defaultIngredient));
 	}
+	
+	for (var i = 0; i < 3; i++) {
+		$scope.ajouterIngredient();
+	}
+	
+	$scope.supprimerIngredient = function(index) {
+		$scope.ingredients.splice(index, 1);
+	};
 
 	var ingredients = new Bloodhound({
 		datumTokenizer : function(d) { return Bloodhound.tokenizers.whitespace(d.libelle); },
@@ -46,6 +56,5 @@ app.controller("CiqualController", [ "$scope", "Ingredients", function($scope, I
 				}
 			}
 		});
-		console.log($scope.total);
 	}, true);
 } ])

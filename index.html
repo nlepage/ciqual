@@ -26,12 +26,13 @@
 		</div>
 		<table class="table table-condensed">
 		<colgroup>
-			<col width="500" />
+			<col width="450" />
+			<col width="150" />
 			<col width="100" />
 			<col width="100" />
 			<col width="100" />
 			<col width="100" />
-			<col width="100" />
+			<col width="50" />
 		</colgroup>
 		<thead>
 			<tr>
@@ -41,6 +42,11 @@
 				<th>Glucides</th>
 				<th>Lipides</th>
 				<th>Énergie</th>
+				<th>
+					<button type="button" class="btn btn-success" aria-label="Ajouter" title="Ajouter" ng-click="ajouterIngredient($index)">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</button>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -66,6 +72,11 @@
 				<td>
 					<span ng-show="ingredient.selected.energie">{{ingredient.selected.energie * ingredient.poids / 100 | number:2}} kcal</span>
 				</td>
+				<td>
+					<button type="button" class="btn btn-danger" aria-label="Supprimer" title="Supprimer" ng-click="supprimerIngredient($index)">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</td>
 			</tr>
 		</tbody>
 		<tfoot>
@@ -76,6 +87,11 @@
 				<th>{{total.glucides | number:2}} g</th>
 				<th>{{total.lipides | number:2}} g</th>
 				<th>{{total.energie | number:2}} kcal</th>
+				<th>
+					<button type="button" class="btn btn-success" aria-label="Ajouter" title="Ajouter" ng-click="ajouterIngredient($index)">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</button>
+				</th>
 			</tr>
 		</tfoot>
 		</table>
